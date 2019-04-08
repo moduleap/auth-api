@@ -20,10 +20,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private static PasswordEncoder encoder = new BCryptPasswordEncoder();
-    @Value("${oauth.clientId:client}")
-    private static String client;
-    @Value("${oauth.clientSecret:Test}")
-    private static String clientSecret;
+    @Value(value = "${oauth.clientId:client}")
+    private String client;
+    @Value(value ="${oauth.clientSecret:Test}")
+    private String clientSecret;
 
     @Autowired
     private TokenStore tokenStore;
@@ -33,6 +33,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception{
+        System.out.println("Client Secret" + clientSecret);
         configurer.inMemory().withClient(client)
                 .secret(encoder.encode(clientSecret))
                 .authorizedGrantTypes("password","authorization_code","refresh_token","implicit")
