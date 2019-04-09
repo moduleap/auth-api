@@ -33,7 +33,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception{
-        System.out.println("Client Secret" + clientSecret);
         configurer.inMemory().withClient(client)
                 .secret(encoder.encode(clientSecret))
                 .authorizedGrantTypes("password","authorization_code","refresh_token","implicit")
