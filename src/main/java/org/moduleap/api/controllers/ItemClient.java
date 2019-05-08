@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient("item-api")
 public interface ItemClient {
     @PostMapping("/item")
-    ResponseEntity<?> createItem();
+    String createItem();
 }
